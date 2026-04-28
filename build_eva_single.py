@@ -150,9 +150,11 @@ const STY = {
 };
 
 const params = new URLSearchParams(location.search);
+const modeDefault = Number(params.get('mode') ?? 2);
+const autoplayDefault = modeDefault === MODE_SYSTEM_TIME ? 1 : 0;
 const config = {
-  mode: Number(params.get('mode') ?? 0),
-  autoplay: Boolean(Number(params.get('autoplay') ?? 0)),
+  mode: modeDefault,
+  autoplay: Boolean(Number(params.get('autoplay') ?? autoplayDefault)),
   tilted: Boolean(Number(params.get('tilted') ?? 1)),
   fullscreen: Boolean(Number(params.get('fullscreen') ?? 0)),
   theme: params.get('theme') || 'default',

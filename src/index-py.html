@@ -37,9 +37,11 @@
     <py-script>
         # Config
         params = URLSearchParams.new(window.location.search)
+        mode_default = int(params.get("mode") or 2)
+        autoplay_default = 1 if mode_default == 2 else 0
         config = {
-            "mode": int(params.get("mode") or 0),
-            "autoplay": bool(int(params.get("autoplay") or 0)),
+            "mode": mode_default,
+            "autoplay": bool(int(params.get("autoplay") or autoplay_default)),
             "tilted": bool(int(params.get("tilted") or 1)),
             "fullscreen": bool(int(params.get("fullscreen") or 0)),
             "theme": params.get("theme") or "default",
